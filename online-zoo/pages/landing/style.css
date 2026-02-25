@@ -1,0 +1,39 @@
+:root {
+  --main-ff: "Montserrat", sans-serif;
+  --second-ff: "Montserrat Alternates", sans-serif;
+  --third-ff: "Inter", sans-serif;
+  --main-text-color: #000;
+  --secondary-text-color: #fff;
+  --back-section-color: #20113d;
+  --main-accent-color: #f58021;
+  --main-heading-color: #00a092;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+body {
+  font-family: var(--main-ff);
+  font-optical-sizing: auto;
+  font-size: 1.125rem;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.5;
+  color: var(--main-text-color);
+}
