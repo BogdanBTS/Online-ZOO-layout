@@ -840,6 +840,12 @@ body {
   text-align: center;
 }
 
+.care-animals__content{
+      display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .care-animals__text {
   max-width: 537px;
   text-align: center;
@@ -866,6 +872,7 @@ body {
   grid-template-rows: auto 1fr auto;
   gap: 30px;
   justify-items: center;
+  position: relative;
 }
 
 .care-animals__grid-card-img {
@@ -904,6 +911,7 @@ body {
   color: var(--secondary-text-color);
   max-width: 90%;
   line-height: 1.5;
+  flex-grow: 1  ;
 }
 
 .care-animals__grid-card-img {
@@ -929,7 +937,7 @@ body {
   height: 74px;
   max-width: 142px;
   width: 100%;
-  margin-bottom: 49px;
+  margin-bottom: 19px;
 }
 
 .care-animals__btn:hover {
