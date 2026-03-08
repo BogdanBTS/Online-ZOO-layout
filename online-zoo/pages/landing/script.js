@@ -1,80 +1,87 @@
-const wrapper = document.getElementById("sliderWrapper");
-const nextBtn = document.getElementById("nextBtn");
-const prevBtn = document.getElementById("prevBtn");
-
-// Funkcja obliczająca szerokość kroku (karta + gap)
-function getScrollAmount() {
-  const card = wrapper.querySelector(".card");
-  const style = window.getComputedStyle(card);
-  const cardWidth = card.offsetWidth;
-  const gap = parseInt(
-    window.getComputedStyle(wrapper.querySelector(".slider-track1")).gap,
-  );
-  return cardWidth + gap;
-}
-function getScrollAmount() {
-  const card = wrapper.querySelector(".card");
-  const style = window.getComputedStyle(card);
-  const cardWidth = card.offsetWidth;
-  const gap2 = parseInt(
-    window.getComputedStyle(wrapper.querySelector(".slider-track2")).gap,
-  );
-  return cardWidth + gap2;
-}
-
-nextBtn.addEventListener("click", () => {
-  wrapper.scrollBy({
-    left: getScrollAmount(),
-    behavior: "smooth",
-  });
+document.addEventListener("DOMContentLoaded", () => {
+  initPetsSlider();
+  initReviewSlider();
 });
 
-prevBtn.addEventListener("click", () => {
-  wrapper.scrollBy({
-    left: -getScrollAmount(),
-    behavior: "smooth",
+function initPetsSlider() {
+  const sliderWrapper = document.getElementById("sliderWrapper");
+  if (!sliderWrapper) return;
+
+  const slidesTrack = sliderWrapper.querySelector(".slider-track");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+
+  function getScrollAmount() {
+    const card = slidesTrack.querySelector(".animal-card");
+    if (!card) return 480;
+    const gap = 40;
+    return card.offsetWidth + gap;
+  }
+
+  nextBtn.addEventListener("click", () => {
+    const scrollAmount = getScrollAmount();
+    const maxScroll = slidesTrack.scrollWidth - slidesTrack.clientWidth;
+
+    // Checking are we close to the end of sliders track width (tolerance 5px)
+    if (slidesTrack.scrollLeft + 5 >= maxScroll) {
+      slidesTrack.scrollTo({ left: 0, behavior: "smooth" });
+    } else {
+      slidesTrack.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
   });
-});
 
-const wrapperYouThink = document.getElementById("user-think__sliderWrapper");
-const nextBtnYouThink = document.getElementById("user-think__slider-nextBtn");
-const prevBtnYouThink = document.getElementById("user-think__slider-prevBtn");
-
-console.log(wrapperYouThink)
-// Funkcja obliczająca szerokość kroku (karta + gap)
-function getScrollAmount() {
-  const card = wrapperYouThink.querySelector(".user-think__card");
-  const style = window.getComputedStyle(card);
-  const cardWidth = card.offsetWidth;
-  const gap = parseInt(
-    window.getComputedStyle(
-      wrapperYouThink.querySelector(".user-think__slider-track1"),
-    ).gap,
-  );
-  return cardWidth + gap;
+  prevBtn.addEventListener("click", () => {
+    if (slidesTrack.scrollLeft <= 5) {
+      const maxScroll = slidesTrack.scrollWidth - slidesTrack.clientWidth;
+      slidesTrack.scrollTo({ left: maxScroll, behavior: "smooth" });
+    } else {
+      slidesTrack.scrollBy({ left: -getScrollAmount(), behavior: "smooth" });
+    }
+  });
 }
-function getScrollAmount() {
-  const card = wrapperYouThink.querySelector(".user-think__card");
-  const style = window.getComputedStyle(card);
-  const cardWidth = card.offsetWidth;
-  const gap2 = parseInt(
-    window.getComputedStyle(
-      wrapperYouThink.querySelector(".user-think__slider-track2"),
-    ).gap,
+
+function initReviewSlider() {
+  const wrapperYouThink = document.getElementById("user-think__sliderWrapper");
+  if (!wrapperYouThink) return;
+  const nextBtnYouThink = document.getElementById("user-think__slider-nextBtn");
+  const prevBtnYouThink = document.getElementById("user-think__slider-prevBtn");
+  const slidesTrack = wrapperYouThink.querySelector(
+    ".user-think__slider-track1",
   );
-  return cardWidth + gap2;
+
+  console.log(wrapperYouThink);
+
+  // Function calculate step width  (card + gap)
+  function getScrollAmount() {
+    const card = wrapperYouThink.querySelector(".user-think__card");
+    if (!card || !slidesTrack) return 0;
+    const cardWidth = card.offsetWidth;
+    const gap = parseInt(window.getComputedStyle(slidesTrack).gap) || 0;
+    return cardWidth + gap;
+  }
+
+  nextBtnYouThink.addEventListener("click", () => {
+    const scrollAmount = getScrollAmount();
+    const maxScroll = wrapperYouThink.scrollWidth - wrapperYouThink.clientWidth;
+
+    // Checking are we close to the end of sliders track width (tolerance 5px)
+    if (wrapperYouThink.scrollLeft + 5 >= maxScroll) {
+      wrapperYouThink.scrollTo({ left: 0, behavior: "smooth" });
+    } else {
+      wrapperYouThink.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
+  });
+
+  prevBtnYouThink.addEventListener("click", () => {
+    if (wrapperYouThink.scrollLeft <= 5) {
+      const maxScroll =
+        wrapperYouThink.scrollWidth - wrapperYouThink.clientWidth;
+      wrapperYouThink.scrollTo({ left: maxScroll, behavior: "smooth" });
+    } else {
+      wrapperYouThink.scrollBy({
+        left: -getScrollAmount(),
+        behavior: "smooth",
+      });
+    }
+  });
 }
-
-nextBtnYouThink.addEventListener("click", () => {
-  wrapperYouThink.scrollBy({
-    left: getScrollAmount(),
-    behavior: "smooth",
-  });
-});
-
-prevBtnYouThink.addEventListener("click", () => {
-  wrapperYouThink.scrollBy({
-    left: -getScrollAmount(),
-    behavior: "smooth",
-  });
-});

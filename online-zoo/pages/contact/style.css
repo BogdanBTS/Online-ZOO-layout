@@ -199,6 +199,7 @@ textarea {
   font-size: 18px;
   outline: none;
   transition: border-color 0.3s;
+  resize: none;
 }
 
 input::placeholder,
@@ -219,6 +220,17 @@ textarea:user-invalid {
   border: 2px solid #f58021 !important;
   background-color: rgba(245, 128, 33, 0.2);
   box-shadow: 0px 0px 12px -4px #f58021;
+}
+
+.form-error {
+  display: none;
+  font-size: 18px;
+  line-height: 150%;
+  color: var(--main-accent-color);
+}
+.form-group input:user-invalid ~ .form-error,
+.form-group textarea:user-invalid ~ .form-error {
+  display: block;
 }
 
 .submit-btn {

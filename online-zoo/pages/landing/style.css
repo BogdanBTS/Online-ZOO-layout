@@ -337,33 +337,32 @@ body {
 
 .slider-section {
   max-width: 1420px;
-  padding: 0 10px;
 }
 
 .slider-wrapper {
   overflow-x: auto;
   scroll-behavior: smooth;
   scrollbar-width: none;
+  margin-right: calc((100vw - 100%) / -2);
 }
 
 .slider-wrapper::-webkit-scrollbar {
   display: none;
 }
 
-.slider-track1 {
-  display: flex;
-  gap: 40px;
-  margin-bottom: 40px;
+.slider-track {
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-rows: repeat(2, auto);
+        gap: 40px;
+        overflow-x: auto;
+        scrollbar-width: none;
 }
 
-.slider-track2 {
-  display: flex;
-  gap: 40px;
-}
 
 /* CUTTING EFFECT: 22% wideness, make 5-th card to be see partially*/
 .card {
-  flex: 0 0 22%;
+  /* flex: 0 0 22%; */
   min-width: 440px;
   height: 747px;
   background: var(--back-section-color);
@@ -660,7 +659,8 @@ body {
 
 .user-think__inner {
   display: flex;
-  gap: 28px;
+  gap: 32px;
+  margin-right: calc((100vw - 100%) / -2);
 }
 .section-title--user-think {
   font-size: 54px;
@@ -678,13 +678,16 @@ body {
 }
 
 .user-think__slider {
-  max-width: 807px;
+      max-width: 1060px;
 }
 .user-think__slider-wrapper {
   overflow-x: auto;
   scroll-behavior: smooth;
   scrollbar-width: none;
   margin-bottom: 60px;
+}
+.user-think__content{
+  max-width: 567px;
 }
 
 .user-think__slider-wrapper::-webkit-scrollbar {
