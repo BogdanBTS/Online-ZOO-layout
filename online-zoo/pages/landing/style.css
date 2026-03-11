@@ -503,7 +503,7 @@ body {
 }
 
 .your-favorite-btn--position {
-  margin-top: 100px;
+     margin: 100px auto auto;
 }
 
 .your-favorite-btn:hover {
@@ -963,9 +963,6 @@ body {
   color: var(--back-section-color);
 }
 
-.your-favorite-btn--position {
-  margin-top: 100px;
-}
 
 .your-favorite-btn--position:hover {
   background-color: var(--back-section-color);
